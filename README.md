@@ -1,0 +1,2 @@
+# challenge
+run yarn test
