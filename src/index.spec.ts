@@ -1,4 +1,11 @@
-import { add, convertToDecimal, duplicateChar, getRoman } from './index'
+import {
+  add,
+  convertToDecimal,
+  duplicateChar,
+  getRoman,
+  setMatrix,
+  permutations,
+} from './index'
 
 describe('Sum two numbers without using any arithmetic operators', () => {
   test('Case 1 + 2', () => {
@@ -51,5 +58,27 @@ describe('Get Roman numbers', () => {
   })
   test('Case 3999', () => {
     expect(getRoman(3999)).toBe('MMMCMXCIX')
+  })
+})
+
+describe('Set zeroes on matrix', () => {
+  test('Case 1', () => {
+    expect(
+      setMatrix([
+        [1, 2, 3],
+        [4, 0, 6],
+        [7, 8, 9],
+      ])
+    ).toStrictEqual([
+      [1, 0, 3],
+      [0, 0, 0],
+      [7, 0, 9],
+    ])
+  })
+})
+
+describe('Get permutations', () => {
+  test('Case 1', () => {
+    expect(permutations('AB')).toStrictEqual(['AB', 'BA'])
   })
 })

@@ -29,7 +29,7 @@ const duplicateChar = (strA: string, strB: string): string[] => {
 }
 
 /**
- * Write a function that takes a string that contains a number in base X with an integer in base X.
+ * Problem: Write a function that takes a string that contains a number in base X with an integer in base X.
  * The function must return the integer value of that string / base pair
  *
  * Solution: validate number and base, then convert the number with parseInt to decimal
@@ -51,6 +51,10 @@ const convertToDecimal = (number: string, base: number) => {
   throw new TypeError('foo')
 }
 
+/**
+ * Problem: Write a function that converts the given number to a Roman numeral: the function must receive a
+ * number and return a string (the number can be between 1 and 3999) /
+ */
 const map = new Map([
   ['M', 1000],
   ['CM', 900],
@@ -67,8 +71,6 @@ const map = new Map([
   ['I', 1],
 ])
 /**
- * Write a function that converts the given number to a Roman numeral: the function must receive a
- * number and return a string (the number can be between 1 and 3999)
  *
  * Solution: create a map with the roman values the iterate to get the roman
  *
@@ -83,6 +85,68 @@ const getRoman = (num: number): any => {
   }
 }
 
-console.log(getRoman(47))
+/**
+ * Write a function such that if an element in an MxN matrix is 0,
+ * its entire row and column are set to 0 and then printed out.
+ *
+ * @param {number[][]} matrix
+ * @return {number[][]} matrix result
+ */
+const setMatrix = (matrix: Array<any[]>): Array<number[]> => {
+  for (let i = 0; i < matrix.length; i++) {
+    const col = matrix[i]
+    for (let j = 0; j < col.length; j++) {
+      if (matrix[i][j] === 0) {
+        let q = 0
+        while (q < matrix.length) {
+          if (matrix[q][j] !== 0) {
+            matrix[q][j] = undefined
+          }
+          q++
+        }
+        q = 0
+        while (q < col.length) {
+          if (matrix[i][q] !== 0) {
+            matrix[i][q] = undefined
+          }
+          q++
+        }
+      }
+    }
+  }
+  for (let i = 0; i < matrix.length; i++) {
+    const col = matrix[i]
+    for (let j = 0; j < col.length; j++) {
+      if (matrix[i][j] === undefined) {
+        matrix[i][j] = 0
+      }
+    }
+  }
+  return matrix
+}
 
-export { add, duplicateChar, convertToDecimal, getRoman }
+/**
+ * Write a function to print all permutations of a string.
+ *
+ */
+const permutations = (word: string, tmp: any = '', res: any[] = []) => {
+  if (!word) {
+    res.push(tmp)
+    return
+  }
+  for (let i = 0; i < word.length; i++) {
+    tmp += word[i]
+    permutations(word.slice(0, i) + word.slice(i + 1), tmp, res)
+    tmp = tmp.slice(0, tmp.length - 1)
+  }
+  return [...new Set(res)]
+}
+
+export {
+  add,
+  duplicateChar,
+  convertToDecimal,
+  getRoman,
+  setMatrix,
+  permutations,
+}
